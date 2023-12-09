@@ -48,9 +48,9 @@ function drawFood(){
 
 }
 function generateFood(){
-const x=Math.floor(Math.random()*gridSize)+1;
-const y=Math.floor(Math.random()*gridSize)+1;
-return(x,y);
+    const x = Math.floor(Math.random() * gridSize)+1;
+    const y = Math.floor(Math.random() * gridSize)+1;
+    return { x, y };
 }
 //moving the snake
 function move(){
@@ -93,17 +93,17 @@ setInterval(()=>{
 },200)
 //start game funtion
 function startGame(){
-    gameStarted=true;//keep track of a running game
-    instructionText.style.display='none'
-    gameInterval=setInterval(()=>{
+    clearInterval(gameInterval); // Clear any existing intervals
+    gameStarted = true;
+    instructionText.style.display = 'none';
+    gameInterval = setInterval(() => {
         move();
         draw();
-
-    },gameSpeedDelay)
+    }, gameSpeedDelay);
 }
 //keypress event lisner
 function handleKeyPress(event){
-    if((!gameStarted && event.code==='space')||(!gameStarted && event.key==='')){
+    if((!gameStarted && event.code==='Space')||(!gameStarted && event.key==='')){
        startGame();
     }else {
 
@@ -127,6 +127,7 @@ case 'ArrowUp':
 }
 document.addEventListener('keydown',handleKeyPress);
 function increaseSpeed(){
+    gameSpeedDelay -= 10;
     console.log(gameSpeedDelay)
 
 }
